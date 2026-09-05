@@ -3,6 +3,7 @@ import uuid
 from datetime import datetime, timedelta
 
 import pandas as pd
+import numpy as np
 
 
 NUM_TRANSACTIONS = 1000
@@ -45,6 +46,9 @@ def generate_transaction(start_time):
         "location": random.choice(locations),
         "payment_identifier": f"CARD_{random.randint(1, 500)}",
         "account_age_days": random.randint(1, 1500),
+
+        "credential_change" : np.random.choice([0, 1], p=[0.98, 0.02]),
+        "payment_method_change" : np.random.choice([0, 1], p=[0.97, 0.03]),
     }
 
     return transaction

@@ -25,12 +25,21 @@ def detect_ato(df):
         df["unique_devices_per_ip"] >= 3
     ).astype(int)
 
+    df["credential_change_signal"] = (
+         df["credential_change"] == 1
+    ).astype(int) * 15
+    df["payment_method_change_signal"] = (
+        df["payment_method_change"] == 1
+    ).astype(int) * 15
+
     # Combine signals
     df["ato_score"] = (
-        df["high_value_signal"] * 35
-        + df["new_account_signal"] * 20
-        + df["device_relationship_signal"] * 25
-        + df["ip_relationship_signal"] * 20
+        df["high_value_signal"]
+        + df["new_account_signal"]
+        + df["device_relationship_signal"]
+        + df["ip_relationship_signal"]
+        + df["credential_change_signal"]
+        + df["payment_method_change_signal"]
     )
 
     # Detection threshold

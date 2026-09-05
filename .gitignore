@@ -22,8 +22,8 @@ Thumbs.db
 .ipynb_checkpoints/
 
 # Data generated during development
-data/raw/*
-data/processed/*
+data/raw/*.csv
+data/processed/*.csv
 
 # Logs
 *.log
